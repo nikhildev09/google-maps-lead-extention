@@ -1,124 +1,595 @@
-# FD Smart Maps Extractor
+# 🚀 Google Maps Lead Extension
 
-Production-ready Chrome Extension MV3 source for extracting business lead data from Google Maps search result pages.
+### ⚡ Find Leads. Extract Data. Save Time.
 
-The extension is designed for educational and business lead-generation workflows where the user manually performs a Google Maps search, then starts extraction from the popup. It uses paced scrolling, live progress updates, duplicate removal, persistent local storage, retry handling, logs, CSV export, and XLSX export through a local SheetJS bundle.
+**Google Maps Lead Extension** is a Chrome/Chromium browser extension that helps automate lead generation from Google Maps.
 
-## Features
+Instead of manually opening every business profile and copying contact information, the extension can process Google Maps business listings **one by one**, collect available business details, and organize the information into a structured file.
 
-- Google Maps-only content script injection
-- Live popup progress: found, extracted, failed, current business, status, and timer
-- Continuous Google Maps sidebar scrolling with randomized 2-5 second waits
-- Profile opening, detail extraction, retry handling, and duplicate removal
-- `chrome.storage.local` persistence for leads, logs, state, selected rows, and pause/resume state
-- Pause, resume, stop, clear data, and auto resume after tab reload
-- XLSX export with SheetJS and CSV export
-- Optional website email/social scan through user-granted optional host permissions
-- Downloadable JSON logs
-- Keyword tagging, lead scoring, selected-row export, no-website filtering, and WhatsApp outreach links
+> 💡 Built for digital marketers, agencies, sales teams, freelancers, entrepreneurs, and businesses that need a faster way to research potential customers.
 
-## Extracted Fields
+---
 
-- Business Name
-- Phone Number
-- Website
-- Address
-- Rating
-- Total Reviews
-- Business Category
-- Opening Hours
-- Google Maps URL
-- Latitude
-- Longitude
-- Email
-- Facebook
-- Instagram
-- WhatsApp
-- LinkedIn
-- Keyword Tag
-- Lead Score
-- WhatsApp Outreach URL
+## ✨ Features
 
-## Project Structure
+| Feature                 | Description                                  |
+| ----------------------- | -------------------------------------------- |
+| 🔍 Google Maps Search   | Search for businesses using Google Maps      |
+| 🤖 Automated Processing | Open business profiles one by one            |
+| 📇 Lead Extraction      | Collect available business information       |
+| 📞 Contact Details      | Extract available phone numbers and websites |
+| 📍 Business Information | Collect name, category, address, etc.        |
+| 🔗 Google Maps URL      | Save the business profile URL                |
+| 📊 Structured Data      | Organize leads into a clean format           |
+| 💾 Export               | Save collected leads for further use         |
+| ⚡ Fast Workflow         | Reduce repetitive manual work                |
+
+---
+
+# 🧠 How It Works
+
+The extension works by interacting with the Google Maps webpage and processing business listings sequentially.
+
+### 🔄 Workflow
 
 ```text
-.
+┌──────────────────────┐
+│    Open Google Maps  │
+└──────────┬───────────┘
+           ↓
+┌──────────────────────┐
+│ Search for a Business│
+│      Category        │
+└──────────┬───────────┘
+           ↓
+┌──────────────────────┐
+│ Find Business Listings│
+└──────────┬───────────┘
+           ↓
+┌──────────────────────┐
+│ Open Profile #1       │
+└──────────┬───────────┘
+           ↓
+┌──────────────────────┐
+│ Extract Available     │
+│ Business Information  │
+└──────────┬───────────┘
+           ↓
+┌──────────────────────┐
+│ Save Lead             │
+└──────────┬───────────┘
+           ↓
+┌──────────────────────┐
+│ Open Next Profile     │
+└──────────┬───────────┘
+           ↓
+        Repeat 🔁
+           ↓
+┌──────────────────────┐
+│ Export Lead Data      │
+└──────────────────────┘
+```
+
+---
+
+# 📦 Installation
+
+You don't need to publish the extension on the Chrome Web Store.
+
+You can install it locally using **Chrome's Developer Mode**.
+
+## 1️⃣ Download the Repository
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR-USERNAME/google-maps-lead-extention.git
+```
+
+Or download the repository as a ZIP file:
+
+```text
+GitHub
+  ↓
+Code
+  ↓
+Download ZIP
+  ↓
+Extract the ZIP
+```
+
+---
+
+# 🌐 Install on Google Chrome
+
+### Step 1 — Open Extensions
+
+Open Chrome and visit:
+
+```text
+chrome://extensions/
+```
+
+### Step 2 — Enable Developer Mode
+
+Turn on:
+
+```text
+Developer mode
+```
+
+You can find the toggle in the **top-right corner**.
+
+### Step 3 — Load the Extension
+
+Click:
+
+```text
+Load unpacked
+```
+
+Select the project folder containing:
+
+```text
+manifest.json
+```
+
+For example:
+
+```text
+google-maps-lead-extention/
+│
 ├── manifest.json
 ├── background.js
 ├── content.js
 ├── popup.html
 ├── popup.js
-├── popup.css
-├── utils.js
-├── excel.js
-├── vendor/
-│   └── xlsx.full.min.js
-├── icons/
-│   ├── icon.svg
-│   ├── icon16.png
-│   ├── icon32.png
-│   ├── icon48.png
-│   └── icon128.png
-└── screenshots/
-    ├── popup-preview.svg
-    └── workflow-preview.svg
+└── ...
 ```
 
-## Example Screenshots
+### Step 4 — Done 🎉
 
-![Popup preview](screenshots/popup-preview.svg)
+The extension should now appear in your Chrome extensions list.
 
-![Workflow preview](screenshots/workflow-preview.svg)
+You can click the **Extensions 🧩** button in Chrome and pin the extension for easy access.
 
-## Install in Chrome
+---
 
-1. Open Chrome and go to `chrome://extensions`.
-2. Enable `Developer mode`.
-3. Click `Load unpacked`.
-4. Select this folder:
+# 🌐 Using Other Browsers
+
+Because the project is built as a browser extension, it may also work with other **Chromium-based browsers**, depending on their extension compatibility.
+
+Examples include:
+
+* 🌐 Google Chrome
+* 🟦 Microsoft Edge
+* 🟠 Brave
+* 🟢 Opera
+* Other Chromium-based browsers
+
+The installation process is generally similar:
 
 ```text
-C:\Users\aspdi\OneDrive\Desktop\extentions\google map data extactor
+Browser Settings
+      ↓
+Extensions
+      ↓
+Developer Mode
+      ↓
+Load Unpacked
+      ↓
+Select Project Folder
 ```
 
-5. Open `https://www.google.com/maps`.
-6. Search a query such as `gyms in delhi`.
-7. Open the extension popup and click `Start Extraction`.
+> ⚠️ Browser compatibility may vary depending on the browser and the extension APIs used by the project.
 
-## Website Email Scan Permission
+---
 
-Google Maps host permissions are declared by default. Scanning business websites for visible email addresses requires broader site access, so the extension requests optional `http://*/*` and `https://*/*` permission only when `Email scan websites` is enabled and the user clicks Start.
+# 🎯 How To Use
 
-If permission is denied, Google Maps extraction continues and website email scanning is skipped.
+## Step 1 — Open Google Maps
 
-## Debugging
+Go to:
 
-Use these Chrome pages while developing:
-
-- `chrome://extensions` -> extension card -> `service worker` to inspect `background.js`
-- Google Maps tab -> DevTools -> Console to inspect `content.js`
-- Right-click popup -> Inspect to inspect `popup.js`, export, and UI state
-
-Useful checks:
-
-- Confirm the active tab URL starts with `https://www.google.com/maps`
-- Check `chrome.storage.local` in DevTools Application tab
-- Use `Download Logs` in the popup for extraction errors and failed profiles
-- If Google Maps changes markup, inspect for `role="feed"`, `/maps/place/` links, and accessible labels
-
-## Package Extension
-
-From the parent folder, create a ZIP package:
-
-```powershell
-Compress-Archive -Path "google map data extactor\*" -DestinationPath "fd-smart-maps-extractor.zip" -Force
+```text
+https://www.google.com/maps
 ```
 
-Upload the ZIP to the Chrome Web Store developer dashboard or keep it for internal distribution.
+---
 
-## Notes
+## Step 2 — Search for a Business Category
 
-- The extractor avoids fixed aggressive timing and uses randomized waits to reduce load on pages.
-- It does not bypass paywalls, logins, captchas, or technical access controls.
-- Google Maps DOM changes over time; selectors use ARIA, roles, semantic attributes, and XPath fallbacks, but future Maps UI changes may still require selector updates.
-- Respect applicable laws, website terms, robots instructions, and privacy obligations when collecting or contacting leads.
+For example:
+
+```text
+digital marketing agencies in Delhi
+```
+
+or:
+
+```text
+dentists in Mumbai
+```
+
+or:
+
+```text
+restaurants in Bangalore
+```
+
+You can search for the type of businesses that you want to research.
+
+---
+
+## Step 3 — Open the Extension
+
+Click the extension icon from your browser toolbar.
+
+You should see the extension interface.
+
+---
+
+## Step 4 — Start Lead Collection
+
+Start the lead extraction process using the controls provided by the extension.
+
+The extension will process available Google Maps business listings sequentially.
+
+```text
+Business #1
+    ↓
+Extract Information
+    ↓
+Save Lead
+    ↓
+Business #2
+    ↓
+Extract Information
+    ↓
+Save Lead
+    ↓
+Business #3
+    ↓
+...
+```
+
+---
+
+# 📊 Example Lead Data
+
+The collected information can be organized like this:
+
+```text
+Business Name       : ABC Digital Marketing
+Category            : Marketing Agency
+Phone               : +91 XXXXX XXXXX
+Website             : https://example.com
+Address             : New Delhi, India
+Google Maps URL     : https://maps.google.com/...
+```
+
+Depending on what Google Maps makes publicly available for a particular business, some fields may be empty.
+
+---
+
+# 💻 Example Data Structure
+
+A lead can be represented in JavaScript like this:
+
+```javascript
+const lead = {
+    name: "ABC Digital Marketing",
+    category: "Digital Marketing Agency",
+    phone: "+91 XXXXX XXXXX",
+    website: "https://example.com",
+    address: "New Delhi, India",
+    mapsUrl: "https://maps.google.com/..."
+};
+
+console.log(lead);
+```
+
+Multiple leads can then be stored in an array:
+
+```javascript
+const leads = [
+    {
+        name: "ABC Digital Marketing",
+        phone: "+91 XXXXX XXXXX",
+        website: "https://example.com"
+    },
+    {
+        name: "XYZ Media",
+        phone: "+91 XXXXX XXXXX",
+        website: "https://example.com"
+    }
+];
+
+console.log(leads);
+```
+
+---
+
+# 📁 Project Structure
+
+The project may look like:
+
+```text
+google-maps-lead-extention/
+│
+├── 📄 manifest.json
+│
+├── 📄 background.js
+│
+├── 📄 content.js
+│
+├── 📄 popup.html
+├── 📄 popup.js
+├── 📄 popup.css
+│
+├── 📁 icons/
+│   ├── icon16.png
+│   ├── icon48.png
+│   └── icon128.png
+│
+└── 📄 README.md
+```
+
+> The exact files may vary depending on the current version of the project.
+
+---
+
+# ⚙️ Extension Architecture
+
+The extension generally consists of several important components:
+
+### 🧩 `manifest.json`
+
+The manifest defines the extension configuration, permissions, scripts, and other browser settings.
+
+Example:
+
+```json
+{
+    "manifest_version": 3,
+    "name": "Google Maps Lead Extension",
+    "version": "1.0.0",
+    "description": "Extract business information from Google Maps.",
+    "action": {
+        "default_popup": "popup.html"
+    }
+}
+```
+
+---
+
+### 🖥️ Popup
+
+The popup provides the user interface for controlling the extension.
+
+Example:
+
+```html
+<button id="start">Start Lead Extraction</button>
+<button id="stop">Stop</button>
+```
+
+---
+
+### ⚙️ JavaScript
+
+JavaScript handles the extension's functionality and communication with the webpage.
+
+Example:
+
+```javascript
+document.getElementById("start").addEventListener("click", () => {
+    console.log("Lead extraction started...");
+});
+```
+
+---
+
+# 🔐 Permissions
+
+Browser extensions may require permissions to interact with websites.
+
+For example:
+
+```json
+{
+    "permissions": [
+        "activeTab",
+        "storage"
+    ]
+}
+```
+
+Only request permissions that are actually required by the extension.
+
+---
+
+# 📤 Exporting Leads
+
+The collected data can be saved in a structured format such as CSV.
+
+Example:
+
+```csv
+Business Name,Phone,Website,Address
+ABC Digital Marketing,+91 XXXXX XXXXX,https://example.com,New Delhi
+XYZ Media,+91 XXXXX XXXXX,https://example.com,Mumbai
+```
+
+This makes the data easy to open in:
+
+* Microsoft Excel
+* Google Sheets
+* LibreOffice
+* CRM systems
+* Data-analysis tools
+
+---
+
+# 🛠️ Development
+
+Want to modify the extension?
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR-USERNAME/google-maps-lead-extention.git
+cd google-maps-lead-extention
+```
+
+Make your changes and reload the extension from:
+
+```text
+chrome://extensions/
+```
+
+Then click:
+
+```text
+Reload ↻
+```
+
+on the extension card.
+
+---
+
+# 🔄 Updating the Extension
+
+After making changes:
+
+```text
+1. Edit the code
+       ↓
+2. Save the files
+       ↓
+3. Open chrome://extensions/
+       ↓
+4. Find the extension
+       ↓
+5. Click Reload ↻
+       ↓
+6. Test again
+```
+
+---
+
+# 🚀 Use Cases
+
+### 📈 Digital Marketing Agencies
+
+Find businesses that may need:
+
+* Website development
+* SEO
+* Social media management
+* Google Ads
+* Meta Ads
+* Marketing automation
+
+### 🤝 Sales Teams
+
+Build prospect lists and research potential customers.
+
+### 👨‍💻 Freelancers
+
+Find potential clients in specific industries or locations.
+
+### 🏢 Businesses
+
+Research local businesses and competitors.
+
+### 📊 Market Research
+
+Collect publicly available business information for research and analysis.
+
+---
+
+# ⚠️ Important Disclaimer
+
+This project is intended for **educational, research, and legitimate business lead-generation purposes**.
+
+Users are responsible for complying with:
+
+* Google Maps / Google terms and policies
+* Applicable privacy laws
+* Data protection regulations
+* Local laws and regulations
+* Any applicable website usage restrictions
+
+Do not use the extension for spam, harassment, unauthorized scraping, or unlawful collection or use of personal information.
+
+Always use collected information responsibly and respect opt-out or do-not-contact requests.
+
+---
+
+# ⭐ Support the Project
+
+If you find this project useful:
+
+⭐ **Star the repository**
+
+🍴 **Fork the repository**
+
+🐛 **Report bugs**
+
+💡 **Suggest improvements**
+
+🔧 **Submit pull requests**
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+```bash
+# Fork the repository
+
+# Clone your fork
+git clone https://github.com/YOUR-USERNAME/google-maps-lead-extention.git
+
+# Create a new branch
+git checkout -b feature/new-feature
+
+# Make your changes
+
+# Commit
+git add .
+git commit -m "Add new feature"
+
+# Push
+git push origin feature/new-feature
+```
+
+Then open a Pull Request on GitHub.
+
+---
+
+# 📜 License
+
+This project is open-source. See the `LICENSE` file for the terms under which this project can be used and modified.
+
+---
+
+# 👨‍💻 Author
+
+**Nikhil**
+
+Built with ❤️ for faster and smarter lead generation.
+
+---
+
+## ⭐ If this project helped you, consider giving it a star!
+
+```text
+        ⭐ Star this repository ⭐
+                 ↓
+       Google Maps Lead Extension
+                 ↓
+          Find • Extract • Grow
+```

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FD Smart Maps Extractor</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Lead Generation</p>
+          <h1>FD Smart Maps Extractor</h1>
+        </div>
+        <div id="statusPill" class="status-pill">Idle</div>
+      </header>
+
+      <section class="control-grid" aria-label="Extractor controls">
+        <button id="startBtn" class="btn btn-primary" type="button">Start Extraction</button>
+        <button id="pauseBtn" class="btn" type="button">Pause</button>
+        <button id="resumeBtn" class="btn" type="button">Resume</button>
+        <button id="stopBtn" class="btn btn-danger" type="button">Stop</button>
+        <button id="clearBtn" class="btn btn-muted" type="button">Clear Data</button>
+        <button id="logsBtn" class="btn btn-muted" type="button">Download Logs</button>
+        <button id="excelBtn" class="btn btn-accent" type="button">Export Excel</button>
+        <button id="csvBtn" class="btn btn-accent" type="button">Export CSV</button>
+      </section>
+
+      <section class="settings-bar" aria-label="Export and scan options">
+        <label class="switch-row">
+          <input id="websiteScanToggle" type="checkbox">
+          <span>Email scan websites</span>
+        </label>
+        <label class="switch-row">
+          <input id="selectedOnlyToggle" type="checkbox">
+          <span>Selected only</span>
+        </label>
+        <label class="switch-row">
+          <input id="filterNoWebsiteToggle" type="checkbox">
+          <span>No website filter</span>
+        </label>
+      </section>
+
+      <section class="stats-grid" aria-label="Live extraction stats">
+        <div class="stat-card">
+          <span>Total Found</span>
+          <strong id="foundCount">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Extracted</span>
+          <strong id="extractedCount">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Failed</span>
+          <strong id="failedCount">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Timer</span>
+          <strong id="timerValue">00:00:00</strong>
+        </div>
+      </section>
+
+      <section class="progress-panel">
+        <div>
+          <span class="panel-label">Current Business</span>
+          <strong id="currentBusiness">-</strong>
+        </div>
+        <div>
+          <span class="panel-label">Extraction Status</span>
+          <strong id="statusText">Ready</strong>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+      </section>
+
+      <section class="table-panel" aria-label="Extracted leads">
+        <div class="table-header">
+          <div>
+            <span class="panel-label">Live Table</span>
+            <strong id="tableCount">0 businesses</strong>
+          </div>
+          <label class="select-all">
+            <input id="selectAllVisible" type="checkbox">
+            <span>Select visible</span>
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th class="select-col"></th>
+                <th>Business Name</th>
+                <th>Phone</th>
+                <th>Website</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="leadRows">
+              <tr>
+                <td colspan="5" class="empty-state">No leads extracted yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <p id="uiMessage" class="ui-message" role="status"></p>
+    </main>
+
+    <script src="vendor/xlsx.full.min.js"></script>
+    <script src="utils.js"></script>
+    <script src="excel.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
